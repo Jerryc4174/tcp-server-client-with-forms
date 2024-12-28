@@ -309,8 +309,12 @@ namespace TcpServer
             lock (stopLock)
             {
                 keepRunning = false;
+                startButton.Invoke((MethodInvoker) delegate{
+                    startButton.Text = "Start";
+                });
+                connected = false;
                         
-                while (connected) Monitor.Wait(stopLock);
+               // while (connected) Monitor.Wait(stopLock);
             }
         }
         
