@@ -38,19 +38,31 @@ namespace TcpServer
         private void LogReceived(string clientEp, string s)
         {
             logger.LogInfo($"Received from {clientEp}:{s}");
-            receivedTextBox.AppendText($"<{DateTime.Now.ToString("yy-MM-dd HH:mm:ss.fff")}> <{clientEp}> <{s}>\r\n");
+           // receivedTextBox.AppendText($"<{DateTime.Now.ToString("yy-MM-dd HH:mm:ss.fff")}> <{clientEp}> <{s}>\r\n");
+            receivedTextBox.Invoke((MethodInvoker)delegate
+            {
+                receivedTextBox.AppendText($"<{DateTime.Now.ToString("yy-MM-dd HH:mm:ss.fff")}> <{clientEp}> <{s}>\r\n");
+            });
         }
 
         private void LogSent(string clientEp, string s)
         {
             logger.LogInfo($"Sent to {clientEp}:{s}");
-            sentTextBox.AppendText($"<{DateTime.Now.ToString("yy-MM-dd HH:mm:ss.fff")}> <{clientEp}> <{s}>\r\n");
+            sentTextBox.Invoke((MethodInvoker)delegate
+            {
+                sentTextBox.AppendText($"<{DateTime.Now.ToString("yy-MM-dd HH:mm:ss.fff")}> <{clientEp}> <{s}>\r\n");
+            });
+            
         }
 
         private void LogDebug(string s)
         {
             logger.LogInfo($"Debug:{s}");
-            logTextBox.AppendText($"<{DateTime.Now.ToString("yy-MM-dd HH:mm:ss.fff")}> <{s}>\r\n");
+            //logTextBox.AppendText($"<{DateTime.Now.ToString("yy-MM-dd HH:mm:ss.fff")}> <{s}>\r\n");
+            logTextBox.Invoke((MethodInvoker)delegate
+            {
+                logTextBox.AppendText($"<{DateTime.Now.ToString("yy-MM-dd HH:mm:ss.fff")}> <{s}>\r\n");
+            });
         }
 
         public void UpdateProductInfo()
@@ -75,21 +87,32 @@ namespace TcpServer
         private void ClientConnected(IPEndPoint clientEp, Socket s)
         {
             clientDictionary.Add(clientEp, s);
-            clientComboBox.Items.Add(clientEp);
+            //clientComboBox.Items.Add(clientEp);
+            clientComboBox.Invoke((MethodInvoker)delegate { 
+                clientComboBox.Items.Add(clientEp);
+                if (clientComboBox.SelectedIndex < 0 && clientComboBox.Items.Count > 0)
+                {
+                    clientComboBox.SelectedIndex = 0;
+                }
+            });
+            /*
             if (clientComboBox.SelectedIndex < 0 && clientComboBox.Items.Count > 0)
             {
                 clientComboBox.SelectedIndex = 0;
-            }
+            }*/
         }
 
         private void ClientDisconnected(IPEndPoint clientEp)
         {
             clientDictionary.Remove(clientEp);
-            clientComboBox.Items.Remove(clientEp);
-            if (clientComboBox.SelectedIndex < 0 && clientComboBox.Items.Count > 0)
+            clientComboBox.Invoke((MethodInvoker)delegate
             {
-                clientComboBox.SelectedIndex = 0;
-            }
+                clientComboBox.Items.Remove(clientEp);
+                if (clientComboBox.SelectedIndex < 0 && clientComboBox.Items.Count > 0)
+                {
+                    clientComboBox.SelectedIndex = 0;
+                }
+            });
         }
         
         private void ListenHandler(object obj)
@@ -187,15 +210,20 @@ namespace TcpServer
 
                     if (txQueue.Count > 0)
                     {
-                        var clientEp = (IPEndPoint)(clientComboBox.SelectedItem);
-                        if (clientEp != null)
-                        {
-                            clientDictionary.TryGetValue(clientEp, out Socket socket);
-                            if (socket != null)
+                         
+                        //var clientEp = (IPEndPoint)(clientComboBox.SelectedItem);
+                        clientComboBox.Invoke((MethodInvoker)delegate{
+                            var clientEp = (IPEndPoint)(clientComboBox.SelectedItem);
+                            if (clientEp != null)
                             {
-                                checkWrite.Add(socket);
+                                clientDictionary.TryGetValue(clientEp, out Socket socket);
+                                if (socket != null)
+                                {
+                                    checkWrite.Add(socket);
+                                }
                             }
-                        }
+                        });
+                        
                     }
                 } // while (keepRunning && rlist.Count > 0)
             }
@@ -223,7 +251,10 @@ namespace TcpServer
                 }
 
                 clientDictionary.Clear();
-                clientComboBox.Items.Clear();
+                //clientComboBox.Items.Clear();
+                clientComboBox.Invoke((MethodInvoker)delegate { 
+                    clientComboBox.Items.Clear();
+                });
 
                 LogDebug("Server stopped running.");
 
