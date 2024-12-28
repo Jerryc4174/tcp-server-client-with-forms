@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using TcpServer.Properties;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace TcpServer
 {
@@ -26,13 +27,16 @@ namespace TcpServer
         private static readonly object stopLock = new object();
 
         private static readonly Log logger = LogManager.GetLogger("MainForm");
-
+        
         public MainForm()
         {
             InitializeComponent();
 
             UpdateProductInfo();
+
             UpdateFormByConnectionState();
+
+
         }
 
         private void LogReceived(string clientEp, string s)
@@ -118,6 +122,7 @@ namespace TcpServer
         private void ListenHandler(object obj)
         {
             ArrayList rlist = null;
+           
 
             try
             {
@@ -134,6 +139,7 @@ namespace TcpServer
                 checkRead.AddRange(rlist);
 
                 var buffer = new byte[RX_BUFFER_SIZE];
+                var pktBuffer = new byte[64];
 
                 while (keepRunning && rlist.Count > 0)
                 {
@@ -161,8 +167,13 @@ namespace TcpServer
 
                                 if (count > 0)
                                 {
+                                    Array.Copy(buffer, pktBuffer, count);
+
                                     string receivedStr = Encoding.UTF8.GetString(buffer, 0, count);
                                     LogReceived(ep.ToString(), $"{receivedStr.TrimEnd('\r', '\n')}");
+
+                                    UpdatePopUpDialog(pktBuffer, count);
+                                    
                                 }
                                 else
                                 {
@@ -438,6 +449,52 @@ namespace TcpServer
             {
                 Size = Settings.Default.WindowSize;
             }
+        }
+
+        private void UpdatePopUpDialog(byte[] pktBuffer, int count)
+        {
+            var popupStat = new popupStatus();
+            // byte 0 bits 8-15 of status bits
+            // byte 1 bits 0-7  of status bits
+            popupStat.SetCB16(Convert.ToBoolean(pktBuffer[0] & 0x80));
+            popupStat.SetCB15(Convert.ToBoolean(pktBuffer[0] & 0x40));
+            popupStat.SetCB14(Convert.ToBoolean(pktBuffer[0] & 0x20));
+            popupStat.SetCB13(Convert.ToBoolean(pktBuffer[0] & 0x10));
+            popupStat.SetCB12(Convert.ToBoolean(pktBuffer[0] & 0x08));
+            popupStat.SetCB11(Convert.ToBoolean(pktBuffer[0] & 0x04));
+            popupStat.SetCB10(Convert.ToBoolean(pktBuffer[0] & 0x02));
+            popupStat.SetCB9(Convert.ToBoolean(pktBuffer[0] & 0x01));
+            popupStat.SetCB8(Convert.ToBoolean(pktBuffer[1] & 0x80));
+            popupStat.SetCB7(Convert.ToBoolean(pktBuffer[1] & 0x40));
+            popupStat.SetCB6(Convert.ToBoolean(pktBuffer[1] & 0x20));
+            popupStat.SetCB5(Convert.ToBoolean(pktBuffer[1] & 0x10));
+            popupStat.SetCB4(Convert.ToBoolean(pktBuffer[1] & 0x08));
+            popupStat.SetCB3(Convert.ToBoolean(pktBuffer[1] & 0x04));
+            popupStat.SetCB2(Convert.ToBoolean(pktBuffer[1] & 0x02));
+            popupStat.SetCB1(Convert.ToBoolean(pktBuffer[1] & 0x01));
+            int outFreq = (pktBuffer[2] * 256 + pktBuffer[3]);
+            float avgRMSCur = (pktBuffer[4] * 256 + pktBuffer[5]) / 10.0f;
+            float avgRMSVolt = (pktBuffer[6] * 256 + pktBuffer[7]) / 10.0f;
+            float VS1 = (pktBuffer[8] * 256 + pktBuffer[9]) / 10.0f;
+            float VS2 = (pktBuffer[10] * 256 + pktBuffer[11]) / 10.0f;
+            float gndFltCurr = (pktBuffer[12] * 256 + pktBuffer[13]) / 10.0f;
+            float temperature = (pktBuffer[14] * 256 + pktBuffer[15]) / 10.0f;
+            int swvMaj = pktBuffer[16];
+            int swvMin = pktBuffer[17];
+            int badCmd = pktBuffer[18];
+            popupStat.SetDtb1Text(outFreq.ToString());
+            popupStat.SetDtb2Text(avgRMSCur.ToString());
+            popupStat.SetDtb3Text(avgRMSVolt.ToString());
+            popupStat.SetDtb4Text(VS1.ToString());
+            popupStat.SetDtb5Text(VS2.ToString());
+            popupStat.SetDtb6Text(gndFltCurr.ToString());
+            popupStat.SetDtb7Text(temperature.ToString());
+            popupStat.SetDtb8Text(swvMaj.ToString());
+            popupStat.SetDtb9Text(swvMin.ToString());
+            popupStat.SetDtb10Text(badCmd.ToString());
+
+
+            popupStat.ShowDialog();
         }
     }
 }

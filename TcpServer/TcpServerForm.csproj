@@ -54,11 +54,20 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="popupStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="popupStatus.Designer.cs">
+      <DependentUpon>popupStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popupStatus.resx">
+      <DependentUpon>popupStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
