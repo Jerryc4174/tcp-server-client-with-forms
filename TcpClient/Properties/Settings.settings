@@ -5,9 +5,6 @@
     <Setting Name="ServerIp" Type="System.String" Scope="User">
       <Value Profile="(Default)">127.0.0.1</Value>
     </Setting>
-    <Setting Name="ServerPort" Type="System.String" Scope="User">
-      <Value Profile="(Default)">2000</Value>
-    </Setting>
     <Setting Name="TextToSend" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
@@ -22,6 +19,9 @@
     </Setting>
     <Setting Name="WindowSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">800, 600</Value>
+    </Setting>
+    <Setting Name="ServerPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">3000</Value>
     </Setting>
   </Settings>
 </SettingsFile>

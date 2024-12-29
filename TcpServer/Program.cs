@@ -30,6 +30,7 @@ namespace TcpServer
             {
                 logger.LogInfo($"=== End {ProductInfo.PRODUCT_NAME} {ProductInfo.GetVersionString()} ===");
             }
+           
         }
     }
 }

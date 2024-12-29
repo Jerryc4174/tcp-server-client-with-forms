@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using TcpServer.Properties;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace TcpServer
 {
@@ -28,7 +27,7 @@ namespace TcpServer
         private static readonly object stopLock = new object();
 
         private static readonly Log logger = LogManager.GetLogger("MainForm");
-        
+
         public MainForm()
         {
             InitializeComponent();
@@ -36,14 +35,12 @@ namespace TcpServer
             UpdateProductInfo();
 
             UpdateFormByConnectionState();
-
-
         }
 
         private void LogReceived(string clientEp, string s)
         {
             logger.LogInfo($"Received from {clientEp}:{s}");
-           // receivedTextBox.AppendText($"<{DateTime.Now.ToString("yy-MM-dd HH:mm:ss.fff")}> <{clientEp}> <{s}>\r\n");
+            
             receivedTextBox.Invoke((MethodInvoker)delegate
             {
                 receivedTextBox.AppendText($"<{DateTime.Now.ToString("yy-MM-dd HH:mm:ss.fff")}> <{clientEp}> <{s}>\r\n");
@@ -57,13 +54,12 @@ namespace TcpServer
             {
                 sentTextBox.AppendText($"<{DateTime.Now.ToString("yy-MM-dd HH:mm:ss.fff")}> <{clientEp}> <{s}>\r\n");
             });
-            
+
         }
 
         private void LogDebug(string s)
         {
             logger.LogInfo($"Debug:{s}");
-            //logTextBox.AppendText($"<{DateTime.Now.ToString("yy-MM-dd HH:mm:ss.fff")}> <{s}>\r\n");
             logTextBox.Invoke((MethodInvoker)delegate
             {
                 logTextBox.AppendText($"<{DateTime.Now.ToString("yy-MM-dd HH:mm:ss.fff")}> <{s}>\r\n");
@@ -92,19 +88,14 @@ namespace TcpServer
         private void ClientConnected(IPEndPoint clientEp, Socket s)
         {
             clientDictionary.Add(clientEp, s);
-            //clientComboBox.Items.Add(clientEp);
-            clientComboBox.Invoke((MethodInvoker)delegate { 
+            clientComboBox.Invoke((MethodInvoker)delegate {
                 clientComboBox.Items.Add(clientEp);
                 if (clientComboBox.SelectedIndex < 0 && clientComboBox.Items.Count > 0)
                 {
                     clientComboBox.SelectedIndex = 0;
                 }
             });
-            /*
-            if (clientComboBox.SelectedIndex < 0 && clientComboBox.Items.Count > 0)
-            {
-                clientComboBox.SelectedIndex = 0;
-            }*/
+            
         }
 
         private void ClientDisconnected(IPEndPoint clientEp)
@@ -119,11 +110,11 @@ namespace TcpServer
                 }
             });
         }
-        
+
         private void ListenHandler(object obj)
         {
             ArrayList rlist = null;
-           
+
 
             try
             {
@@ -144,7 +135,6 @@ namespace TcpServer
 
                 while (keepRunning && rlist.Count > 0)
                 {
-                    //LogInfo("Select ...");
                     Socket.Select(checkRead, checkWrite, null, SELECT_TIMEOUT);
 
                     foreach (var socket in checkRead)
@@ -153,7 +143,7 @@ namespace TcpServer
                         {
                             Socket client = server.Accept();
                             rlist.Add(client);
-                            
+
                             IPEndPoint ep = (IPEndPoint)client.RemoteEndPoint;
                             ClientConnected(ep, client);
                             LogDebug($"Connection[{ep.ToString()}] established.");
@@ -174,7 +164,7 @@ namespace TcpServer
                                     LogReceived(ep.ToString(), $"{receivedStr.TrimEnd('\r', '\n')}");
 
                                     UpdatePopUpDialog(pktBuffer, count);
-                                    
+
                                 }
                                 else
                                 {
@@ -202,7 +192,7 @@ namespace TcpServer
                         {
                             while (txQueue.TryDequeue(out byte[] lineToSend))
                             {
-                                ((Socket)socket).Send((lineToSend));
+                                ((Socket)socket).Send(lineToSend);
                                 string sentStr = BitConverter.ToString(lineToSend);
                                 LogSent(ep.ToString(), $"{sentStr}");
                             }
@@ -223,9 +213,7 @@ namespace TcpServer
 
                     if (txQueue.Count > 0)
                     {
-                         
-                        //var clientEp = (IPEndPoint)(clientComboBox.SelectedItem);
-                        clientComboBox.Invoke((MethodInvoker)delegate{
+                        clientComboBox.Invoke((MethodInvoker)delegate {
                             var clientEp = (IPEndPoint)(clientComboBox.SelectedItem);
                             if (clientEp != null)
                             {
@@ -236,8 +224,9 @@ namespace TcpServer
                                 }
                             }
                         });
-                        
+
                     }
+
                 } // while (keepRunning && rlist.Count > 0)
             }
             catch (Exception ex)
@@ -264,8 +253,7 @@ namespace TcpServer
                 }
 
                 clientDictionary.Clear();
-                //clientComboBox.Items.Clear();
-                clientComboBox.Invoke((MethodInvoker)delegate { 
+                clientComboBox.Invoke((MethodInvoker)delegate {
                     clientComboBox.Items.Clear();
                 });
 
@@ -322,15 +310,15 @@ namespace TcpServer
             lock (stopLock)
             {
                 keepRunning = false;
-                startButton.Invoke((MethodInvoker) delegate{
+                startButton.Invoke((MethodInvoker)delegate {
                     startButton.Text = "Start";
                 });
                 connected = false;
-                        
-               // while (connected) Monitor.Wait(stopLock);
+
+                // while (connected) Monitor.Wait(stopLock);
             }
         }
-        
+
         private void StartButton_Click(object sender, EventArgs e)
         {
             try
@@ -340,6 +328,7 @@ namespace TcpServer
                     CloseConnection();
 
                     UpdateFormByConnectionState();
+
                 }
                 else
                 {
@@ -373,7 +362,7 @@ namespace TcpServer
                 if (clientComboBox.SelectedItem != null)
                 {
                     string lineToSend = $"{sendTextBox.Text}";
-                    
+
                     string[] digits = lineToSend.Split(' ');
                     byte[] byteArray = new byte[digits.Length];
                     for (int i = 0; i < byteArray.Length; i++)
@@ -382,6 +371,7 @@ namespace TcpServer
                     }
                     commandSent = byteArray[0];
                     txQueue.Enqueue(byteArray);
+
                 }
                 else
                 {
@@ -400,7 +390,7 @@ namespace TcpServer
 
             Settings.Default.ListeningPort = portTextBox.Text;
             Settings.Default.TextToSend = sendTextBox.Text;
-            
+
             if (WindowState == FormWindowState.Normal)
             {
                 Settings.Default.WindowLocation = Location;
@@ -449,7 +439,7 @@ namespace TcpServer
             {
                 sendTextBox.Text = Settings.Default.TextToSend;
             }
-            
+
             if (Settings.Default.WindowLocation != null)
             {
                 Location = Settings.Default.WindowLocation;
@@ -457,11 +447,11 @@ namespace TcpServer
 
             if (Settings.Default.WindowSize != null)
             {
-                Size = Settings.Default.WindowSize;
+                Size = Settings.Default.WindowSize; 
             }
+            
         }
-
-        private void UpdatePopUpDialog(byte[] pktBuffer, int count)
+         private void UpdatePopUpDialog(byte[] pktBuffer, int count)
         {
             if (commandSent != 0x10) // download fault packet = 0x10
             {   // pop up the status packet
