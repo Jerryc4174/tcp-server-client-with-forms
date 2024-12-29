@@ -49,7 +49,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.statusButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
@@ -68,6 +67,7 @@
             this.portTextBox.Size = new System.Drawing.Size(95, 30);
             this.portTextBox.TabIndex = 1;
             this.portTextBox.Text = "2000";
+            this.portTextBox.UseWaitCursor = true;
             // 
             // label1
             // 
@@ -80,6 +80,7 @@
             this.label1.Size = new System.Drawing.Size(197, 25);
             this.label1.TabIndex = 2;
             this.label1.Text = "LISTENING PORT:";
+            this.label1.UseWaitCursor = true;
             // 
             // startButton
             // 
@@ -95,6 +96,7 @@
             this.startButton.TabIndex = 2;
             this.startButton.Text = "Start";
             this.startButton.UseVisualStyleBackColor = false;
+            this.startButton.UseWaitCursor = true;
             this.startButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
             // receivedTextBox
@@ -114,6 +116,7 @@
             this.receivedTextBox.Size = new System.Drawing.Size(683, 258);
             this.receivedTextBox.TabIndex = 5;
             this.receivedTextBox.TabStop = false;
+            this.receivedTextBox.UseWaitCursor = true;
             // 
             // sentTextBox
             // 
@@ -132,6 +135,7 @@
             this.sentTextBox.Size = new System.Drawing.Size(603, 258);
             this.sentTextBox.TabIndex = 6;
             this.sentTextBox.TabStop = false;
+            this.sentTextBox.UseWaitCursor = true;
             // 
             // label2
             // 
@@ -144,6 +148,7 @@
             this.label2.Size = new System.Drawing.Size(99, 25);
             this.label2.TabIndex = 6;
             this.label2.Text = "Received:";
+            this.label2.UseWaitCursor = true;
             // 
             // label3
             // 
@@ -156,6 +161,7 @@
             this.label3.Size = new System.Drawing.Size(59, 25);
             this.label3.TabIndex = 7;
             this.label3.Text = "Sent:";
+            this.label3.UseWaitCursor = true;
             // 
             // sendTextBox
             // 
@@ -166,8 +172,9 @@
             this.sendTextBox.Location = new System.Drawing.Point(142, 55);
             this.sendTextBox.Margin = new System.Windows.Forms.Padding(3, 3, 6, 3);
             this.sendTextBox.Name = "sendTextBox";
-            this.sendTextBox.Size = new System.Drawing.Size(324, 30);
+            this.sendTextBox.Size = new System.Drawing.Size(322, 30);
             this.sendTextBox.TabIndex = 4;
+            this.sendTextBox.UseWaitCursor = true;
             this.sendTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SendTextBox_KeyDown);
             // 
             // sendButton
@@ -177,13 +184,14 @@
             this.sendButton.BackColor = System.Drawing.Color.LightSkyBlue;
             this.sendButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.sendButton.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sendButton.Location = new System.Drawing.Point(475, 3);
+            this.sendButton.Location = new System.Drawing.Point(473, 3);
             this.sendButton.Name = "sendButton";
             this.tableLayoutPanel6.SetRowSpan(this.sendButton, 2);
             this.sendButton.Size = new System.Drawing.Size(124, 88);
             this.sendButton.TabIndex = 5;
             this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = false;
+            this.sendButton.UseWaitCursor = true;
             this.sendButton.Click += new System.EventHandler(this.SendButton_Click);
             // 
             // label4
@@ -197,6 +205,7 @@
             this.label4.Size = new System.Drawing.Size(76, 25);
             this.label4.TabIndex = 10;
             this.label4.Text = "Debug:";
+            this.label4.UseWaitCursor = true;
             // 
             // logTextBox
             // 
@@ -216,6 +225,7 @@
             this.logTextBox.Size = new System.Drawing.Size(1292, 258);
             this.logTextBox.TabIndex = 7;
             this.logTextBox.TabStop = false;
+            this.logTextBox.UseWaitCursor = true;
             // 
             // tableLayoutPanel1
             // 
@@ -235,7 +245,6 @@
             this.tableLayoutPanel1.Controls.Add(this.receivedTextBox, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel6, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.statusButton, 1, 5);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(1, 1);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
@@ -247,6 +256,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1298, 750);
             this.tableLayoutPanel1.TabIndex = 12;
+            this.tableLayoutPanel1.UseWaitCursor = true;
             // 
             // tableLayoutPanel4
             // 
@@ -266,6 +276,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(683, 42);
             this.tableLayoutPanel4.TabIndex = 24;
+            this.tableLayoutPanel4.UseWaitCursor = true;
             // 
             // clearReceivedButton
             // 
@@ -278,6 +289,7 @@
             this.clearReceivedButton.TabIndex = 6;
             this.clearReceivedButton.Text = "Clear Received";
             this.clearReceivedButton.UseVisualStyleBackColor = true;
+            this.clearReceivedButton.UseWaitCursor = true;
             this.clearReceivedButton.Click += new System.EventHandler(this.ClearReceivedButton_Click);
             // 
             // clearSentButton
@@ -291,6 +303,7 @@
             this.clearSentButton.TabIndex = 7;
             this.clearSentButton.Text = "Clear Sent";
             this.clearSentButton.UseVisualStyleBackColor = true;
+            this.clearSentButton.UseWaitCursor = true;
             this.clearSentButton.Click += new System.EventHandler(this.ClearSentButton_Click);
             // 
             // clearLogButton
@@ -304,6 +317,7 @@
             this.clearLogButton.TabIndex = 8;
             this.clearLogButton.Text = "Clear Debug";
             this.clearLogButton.UseVisualStyleBackColor = true;
+            this.clearLogButton.UseWaitCursor = true;
             this.clearLogButton.Click += new System.EventHandler(this.ClearLogButton_Click);
             // 
             // tableLayoutPanel6
@@ -315,7 +329,7 @@
             this.tableLayoutPanel6.ColumnCount = 3;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.51542F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.48458F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 132F));
             this.tableLayoutPanel6.Controls.Add(this.clientComboBox, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.label6, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.sendTextBox, 1, 1);
@@ -328,6 +342,7 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(603, 94);
             this.tableLayoutPanel6.TabIndex = 26;
+            this.tableLayoutPanel6.UseWaitCursor = true;
             // 
             // clientComboBox
             // 
@@ -339,8 +354,9 @@
             this.clientComboBox.Location = new System.Drawing.Point(142, 7);
             this.clientComboBox.Margin = new System.Windows.Forms.Padding(3, 0, 6, 0);
             this.clientComboBox.Name = "clientComboBox";
-            this.clientComboBox.Size = new System.Drawing.Size(324, 33);
+            this.clientComboBox.Size = new System.Drawing.Size(322, 33);
             this.clientComboBox.TabIndex = 3;
+            this.clientComboBox.UseWaitCursor = true;
             // 
             // label6
             // 
@@ -353,6 +369,7 @@
             this.label6.Size = new System.Drawing.Size(50, 25);
             this.label6.TabIndex = 0;
             this.label6.Text = "TO:";
+            this.label6.UseWaitCursor = true;
             // 
             // label7
             // 
@@ -365,6 +382,7 @@
             this.label7.Size = new System.Drawing.Size(126, 25);
             this.label7.TabIndex = 10;
             this.label7.Text = "MESSAGE:";
+            this.label7.UseWaitCursor = true;
             // 
             // tableLayoutPanel3
             // 
@@ -386,16 +404,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(683, 94);
             this.tableLayoutPanel3.TabIndex = 27;
-            // 
-            // statusButton
-            // 
-            this.statusButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.statusButton.Location = new System.Drawing.Point(692, 710);
-            this.statusButton.Name = "statusButton";
-            this.statusButton.Size = new System.Drawing.Size(140, 32);
-            this.statusButton.TabIndex = 28;
-            this.statusButton.Text = "Show Packet";
-            this.statusButton.UseVisualStyleBackColor = true;
+            this.tableLayoutPanel3.UseWaitCursor = true;
             // 
             // MainForm
             // 
@@ -406,7 +415,8 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Name = "MainForm";
-            this.Text = "TCP server";
+            this.Text = "ICB Server";
+            this.UseWaitCursor = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -443,7 +453,6 @@
         private System.Windows.Forms.ComboBox clientComboBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private System.Windows.Forms.Button statusButton;
     }
 }
 

@@ -54,6 +54,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="popupFault1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="popupFault1.Designer.cs">
+      <DependentUpon>popupFault1.cs</DependentUpon>
+    </Compile>
     <Compile Include="popupStatus.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +71,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popupFault1.resx">
+      <DependentUpon>popupFault1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="popupStatus.resx">
       <DependentUpon>popupStatus.cs</DependentUpon>

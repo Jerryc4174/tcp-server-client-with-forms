@@ -378,7 +378,7 @@ namespace TcpServer
                     byte[] byteArray = new byte[digits.Length];
                     for (int i = 0; i < byteArray.Length; i++)
                     {
-                        byteArray[i] = Convert.ToByte(digits[i]);
+                        byteArray[i] = byte.Parse(digits[i], System.Globalization.NumberStyles.HexNumber);
                     }
                     commandSent = byteArray[0];
                     txQueue.Enqueue(byteArray);
@@ -464,7 +464,7 @@ namespace TcpServer
         private void UpdatePopUpDialog(byte[] pktBuffer, int count)
         {
             if (commandSent != 0x10) // download fault packet = 0x10
-            {
+            {   // pop up the status packet
                 var popupStat = new popupStatus();
                 // byte 0 bits 8-15 of status bits
                 // byte 1 bits 0-7  of status bits
@@ -507,6 +507,52 @@ namespace TcpServer
 
 
                 popupStat.ShowDialog();
+                popupStat.Dispose();
+            }
+            else
+            { // pop up the fault packet display
+                var popupFlt = new popupFault1();
+                // byte 0 bits 8-15 of status bits
+                // byte 1 bits 0-7  of status bits
+                popupFlt.SetCB16(Convert.ToBoolean(pktBuffer[0] & 0x80));
+                popupFlt.SetCB15(Convert.ToBoolean(pktBuffer[0] & 0x40));
+                popupFlt.SetCB14(Convert.ToBoolean(pktBuffer[0] & 0x20));
+                popupFlt.SetCB13(Convert.ToBoolean(pktBuffer[0] & 0x10));
+                popupFlt.SetCB12(Convert.ToBoolean(pktBuffer[0] & 0x08));
+                popupFlt.SetCB11(Convert.ToBoolean(pktBuffer[0] & 0x04));
+                popupFlt.SetCB10(Convert.ToBoolean(pktBuffer[0] & 0x02));
+                popupFlt.SetCB9(Convert.ToBoolean(pktBuffer[0] & 0x01));
+                popupFlt.SetCB8(Convert.ToBoolean(pktBuffer[1] & 0x80));
+                popupFlt.SetCB7(Convert.ToBoolean(pktBuffer[1] & 0x40));
+                popupFlt.SetCB6(Convert.ToBoolean(pktBuffer[1] & 0x20));
+                popupFlt.SetCB5(Convert.ToBoolean(pktBuffer[1] & 0x10));
+                popupFlt.SetCB4(Convert.ToBoolean(pktBuffer[1] & 0x08));
+                popupFlt.SetCB3(Convert.ToBoolean(pktBuffer[1] & 0x04));
+                popupFlt.SetCB2(Convert.ToBoolean(pktBuffer[1] & 0x02));
+                popupFlt.SetCB1(Convert.ToBoolean(pktBuffer[1] & 0x01));
+                int outFreq = (pktBuffer[2] * 256 + pktBuffer[3]);
+                float UphaseCur = (pktBuffer[4] * 256 + pktBuffer[5]) / 10.0f;
+                float VphaseCur = (pktBuffer[6] * 256 + pktBuffer[7]) / 10.0f;
+                float WphaseCur = (pktBuffer[8] * 256 + pktBuffer[9]) / 10.0f;
+                float VS1 = (pktBuffer[10] * 256 + pktBuffer[11]) / 10.0f;
+                float VS2 = (pktBuffer[12] * 256 + pktBuffer[13]) / 10.0f;
+                float gndCurr = (pktBuffer[14] * 256 + pktBuffer[15]) / 10.0f;
+                float temperature = (pktBuffer[16] * 256 + pktBuffer[17]) / 10.0f;
+                float modIndex = (pktBuffer[18] * 256 + pktBuffer[19]) / 10.0f;
+                popupFlt.SetDtb1Text(outFreq.ToString());
+                popupFlt.SetDtb2Text(UphaseCur.ToString());
+                popupFlt.SetDtb3Text(VphaseCur.ToString());
+                popupFlt.SetDtb4Text(WphaseCur.ToString());
+                popupFlt.SetDtb5Text(VS1.ToString());
+                popupFlt.SetDtb6Text(VS2.ToString());
+                popupFlt.SetDtb7Text(gndCurr.ToString());
+                popupFlt.SetDtb8Text(temperature.ToString());
+                popupFlt.SetDtb9Text(modIndex.ToString());
+                popupFlt.SetDtb10Text(" ");
+
+
+                popupFlt.ShowDialog();
+                popupFlt.Dispose();
             }
         }
     }
