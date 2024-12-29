@@ -20,9 +20,10 @@ namespace TcpServer
 
         private bool connected = false;
         private bool keepRunning = true;
+        private byte commandSent = 0;
 
         private Dictionary<IPEndPoint, Socket> clientDictionary = new Dictionary<IPEndPoint, Socket>();
-        private ConcurrentQueue<string> txQueue = new ConcurrentQueue<string>();
+        private ConcurrentQueue<byte[]> txQueue = new ConcurrentQueue<byte[]>();
 
         private static readonly object stopLock = new object();
 
@@ -199,10 +200,11 @@ namespace TcpServer
 
                         try
                         {
-                            while (txQueue.TryDequeue(out string lineToSend))
+                            while (txQueue.TryDequeue(out byte[] lineToSend))
                             {
-                                ((Socket)socket).Send(Encoding.UTF8.GetBytes($"{lineToSend}\r\n"));
-                                LogSent(ep.ToString(), $"{lineToSend}");
+                                ((Socket)socket).Send((lineToSend));
+                                string sentStr = BitConverter.ToString(lineToSend);
+                                LogSent(ep.ToString(), $"{sentStr}");
                             }
                         }
                         catch (Exception e)
@@ -371,7 +373,15 @@ namespace TcpServer
                 if (clientComboBox.SelectedItem != null)
                 {
                     string lineToSend = $"{sendTextBox.Text}";
-                    txQueue.Enqueue(lineToSend);
+                    
+                    string[] digits = lineToSend.Split(' ');
+                    byte[] byteArray = new byte[digits.Length];
+                    for (int i = 0; i < byteArray.Length; i++)
+                    {
+                        byteArray[i] = Convert.ToByte(digits[i]);
+                    }
+                    commandSent = byteArray[0];
+                    txQueue.Enqueue(byteArray);
                 }
                 else
                 {
@@ -453,48 +463,51 @@ namespace TcpServer
 
         private void UpdatePopUpDialog(byte[] pktBuffer, int count)
         {
-            var popupStat = new popupStatus();
-            // byte 0 bits 8-15 of status bits
-            // byte 1 bits 0-7  of status bits
-            popupStat.SetCB16(Convert.ToBoolean(pktBuffer[0] & 0x80));
-            popupStat.SetCB15(Convert.ToBoolean(pktBuffer[0] & 0x40));
-            popupStat.SetCB14(Convert.ToBoolean(pktBuffer[0] & 0x20));
-            popupStat.SetCB13(Convert.ToBoolean(pktBuffer[0] & 0x10));
-            popupStat.SetCB12(Convert.ToBoolean(pktBuffer[0] & 0x08));
-            popupStat.SetCB11(Convert.ToBoolean(pktBuffer[0] & 0x04));
-            popupStat.SetCB10(Convert.ToBoolean(pktBuffer[0] & 0x02));
-            popupStat.SetCB9(Convert.ToBoolean(pktBuffer[0] & 0x01));
-            popupStat.SetCB8(Convert.ToBoolean(pktBuffer[1] & 0x80));
-            popupStat.SetCB7(Convert.ToBoolean(pktBuffer[1] & 0x40));
-            popupStat.SetCB6(Convert.ToBoolean(pktBuffer[1] & 0x20));
-            popupStat.SetCB5(Convert.ToBoolean(pktBuffer[1] & 0x10));
-            popupStat.SetCB4(Convert.ToBoolean(pktBuffer[1] & 0x08));
-            popupStat.SetCB3(Convert.ToBoolean(pktBuffer[1] & 0x04));
-            popupStat.SetCB2(Convert.ToBoolean(pktBuffer[1] & 0x02));
-            popupStat.SetCB1(Convert.ToBoolean(pktBuffer[1] & 0x01));
-            int outFreq = (pktBuffer[2] * 256 + pktBuffer[3]);
-            float avgRMSCur = (pktBuffer[4] * 256 + pktBuffer[5]) / 10.0f;
-            float avgRMSVolt = (pktBuffer[6] * 256 + pktBuffer[7]) / 10.0f;
-            float VS1 = (pktBuffer[8] * 256 + pktBuffer[9]) / 10.0f;
-            float VS2 = (pktBuffer[10] * 256 + pktBuffer[11]) / 10.0f;
-            float gndFltCurr = (pktBuffer[12] * 256 + pktBuffer[13]) / 10.0f;
-            float temperature = (pktBuffer[14] * 256 + pktBuffer[15]) / 10.0f;
-            int swvMaj = pktBuffer[16];
-            int swvMin = pktBuffer[17];
-            int badCmd = pktBuffer[18];
-            popupStat.SetDtb1Text(outFreq.ToString());
-            popupStat.SetDtb2Text(avgRMSCur.ToString());
-            popupStat.SetDtb3Text(avgRMSVolt.ToString());
-            popupStat.SetDtb4Text(VS1.ToString());
-            popupStat.SetDtb5Text(VS2.ToString());
-            popupStat.SetDtb6Text(gndFltCurr.ToString());
-            popupStat.SetDtb7Text(temperature.ToString());
-            popupStat.SetDtb8Text(swvMaj.ToString());
-            popupStat.SetDtb9Text(swvMin.ToString());
-            popupStat.SetDtb10Text(badCmd.ToString());
+            if (commandSent != 0x10) // download fault packet = 0x10
+            {
+                var popupStat = new popupStatus();
+                // byte 0 bits 8-15 of status bits
+                // byte 1 bits 0-7  of status bits
+                popupStat.SetCB16(Convert.ToBoolean(pktBuffer[0] & 0x80));
+                popupStat.SetCB15(Convert.ToBoolean(pktBuffer[0] & 0x40));
+                popupStat.SetCB14(Convert.ToBoolean(pktBuffer[0] & 0x20));
+                popupStat.SetCB13(Convert.ToBoolean(pktBuffer[0] & 0x10));
+                popupStat.SetCB12(Convert.ToBoolean(pktBuffer[0] & 0x08));
+                popupStat.SetCB11(Convert.ToBoolean(pktBuffer[0] & 0x04));
+                popupStat.SetCB10(Convert.ToBoolean(pktBuffer[0] & 0x02));
+                popupStat.SetCB9(Convert.ToBoolean(pktBuffer[0] & 0x01));
+                popupStat.SetCB8(Convert.ToBoolean(pktBuffer[1] & 0x80));
+                popupStat.SetCB7(Convert.ToBoolean(pktBuffer[1] & 0x40));
+                popupStat.SetCB6(Convert.ToBoolean(pktBuffer[1] & 0x20));
+                popupStat.SetCB5(Convert.ToBoolean(pktBuffer[1] & 0x10));
+                popupStat.SetCB4(Convert.ToBoolean(pktBuffer[1] & 0x08));
+                popupStat.SetCB3(Convert.ToBoolean(pktBuffer[1] & 0x04));
+                popupStat.SetCB2(Convert.ToBoolean(pktBuffer[1] & 0x02));
+                popupStat.SetCB1(Convert.ToBoolean(pktBuffer[1] & 0x01));
+                int outFreq = (pktBuffer[2] * 256 + pktBuffer[3]);
+                float avgRMSCur = (pktBuffer[4] * 256 + pktBuffer[5]) / 10.0f;
+                float avgRMSVolt = (pktBuffer[6] * 256 + pktBuffer[7]) / 10.0f;
+                float VS1 = (pktBuffer[8] * 256 + pktBuffer[9]) / 10.0f;
+                float VS2 = (pktBuffer[10] * 256 + pktBuffer[11]) / 10.0f;
+                float gndFltCurr = (pktBuffer[12] * 256 + pktBuffer[13]) / 10.0f;
+                float temperature = (pktBuffer[14] * 256 + pktBuffer[15]) / 10.0f;
+                int swvMaj = pktBuffer[16];
+                int swvMin = pktBuffer[17];
+                int badCmd = pktBuffer[18];
+                popupStat.SetDtb1Text(outFreq.ToString());
+                popupStat.SetDtb2Text(avgRMSCur.ToString());
+                popupStat.SetDtb3Text(avgRMSVolt.ToString());
+                popupStat.SetDtb4Text(VS1.ToString());
+                popupStat.SetDtb5Text(VS2.ToString());
+                popupStat.SetDtb6Text(gndFltCurr.ToString());
+                popupStat.SetDtb7Text(temperature.ToString());
+                popupStat.SetDtb8Text(swvMaj.ToString());
+                popupStat.SetDtb9Text(swvMin.ToString());
+                popupStat.SetDtb10Text(badCmd.ToString());
 
 
-            popupStat.ShowDialog();
+                popupStat.ShowDialog();
+            }
         }
     }
 }
