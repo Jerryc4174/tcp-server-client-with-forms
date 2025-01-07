@@ -524,21 +524,23 @@ namespace TcpServer
                 float UphaseCur = (pktBuffer[4] * 256 + pktBuffer[5]) / 10.0f;
                 float VphaseCur = (pktBuffer[6] * 256 + pktBuffer[7]) / 10.0f;
                 float WphaseCur = (pktBuffer[8] * 256 + pktBuffer[9]) / 10.0f;
-                float VS1 = (pktBuffer[10] * 256 + pktBuffer[11]) / 10.0f;
-                float VS2 = (pktBuffer[12] * 256 + pktBuffer[13]) / 10.0f;
-                float gndCurr = (pktBuffer[14] * 256 + pktBuffer[15]) / 10.0f;
-                float temperature = (pktBuffer[16] * 256 + pktBuffer[17]) / 10.0f;
-                float modIndex = (pktBuffer[18] * 256 + pktBuffer[19]) / 10.0f;
+                float avgPhaseVolts = (pktBuffer[10] * 256 + pktBuffer[11])/ 10.0f;
+                float VS1 = (pktBuffer[12] * 256 + pktBuffer[13]) / 10.0f;
+                float VS2 = (pktBuffer[14] * 256 + pktBuffer[15]) / 10.0f;
+                float gndCurr = (pktBuffer[16] * 256 + pktBuffer[17]) / 10.0f;
+                float temperature = (pktBuffer[18] * 256 + pktBuffer[19]) / 10.0f;
+                float modIndex = (pktBuffer[20] * 256 + pktBuffer[21]) / 10.0f;
                 popupFlt.SetDtb1Text(outFreq.ToString());
                 popupFlt.SetDtb2Text(UphaseCur.ToString());
                 popupFlt.SetDtb3Text(VphaseCur.ToString());
                 popupFlt.SetDtb4Text(WphaseCur.ToString());
-                popupFlt.SetDtb5Text(VS1.ToString());
-                popupFlt.SetDtb6Text(VS2.ToString());
-                popupFlt.SetDtb7Text(gndCurr.ToString());
-                popupFlt.SetDtb8Text(temperature.ToString());
-                popupFlt.SetDtb9Text(modIndex.ToString());
-                popupFlt.SetDtb10Text(" ");
+                popupFlt.SetDtb5Text(avgPhaseVolts.ToString());
+                popupFlt.SetDtb6Text(VS1.ToString());
+                popupFlt.SetDtb7Text(VS2.ToString());
+                popupFlt.SetDtb8Text(gndCurr.ToString());
+                popupFlt.SetDtb9Text(temperature.ToString());
+                popupFlt.SetDtb10Text(modIndex.ToString());
+                
 
 
                 popupFlt.ShowDialog();

@@ -70,17 +70,19 @@
             // 
             // dataTextBox1
             // 
-            this.dataTextBox1.Location = new System.Drawing.Point(391, 43);
+            this.dataTextBox1.Location = new System.Drawing.Point(293, 35);
+            this.dataTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataTextBox1.Name = "dataTextBox1";
-            this.dataTextBox1.Size = new System.Drawing.Size(100, 22);
+            this.dataTextBox1.Size = new System.Drawing.Size(76, 20);
             this.dataTextBox1.TabIndex = 0;
             // 
             // button1
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(582, 339);
+            this.button1.Location = new System.Drawing.Point(436, 275);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 72);
+            this.button1.Size = new System.Drawing.Size(98, 58);
             this.button1.TabIndex = 1;
             this.button1.Text = "Ok";
             this.button1.UseVisualStyleBackColor = true;
@@ -89,159 +91,175 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(49, 45);
+            this.checkBox1.Location = new System.Drawing.Point(37, 37);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(62, 20);
+            this.checkBox1.Size = new System.Drawing.Size(74, 17);
             this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "Jmp1";
+            this.checkBox1.Text = "GD_UVFlt";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(49, 81);
+            this.checkBox2.Location = new System.Drawing.Point(37, 66);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(62, 20);
+            this.checkBox2.Size = new System.Drawing.Size(74, 17);
             this.checkBox2.TabIndex = 3;
-            this.checkBox2.Text = "Jmp2";
+            this.checkBox2.Text = "GD_OCFlt";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(49, 117);
+            this.checkBox3.Location = new System.Drawing.Point(37, 95);
+            this.checkBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(62, 20);
+            this.checkBox3.Size = new System.Drawing.Size(75, 17);
             this.checkBox3.TabIndex = 4;
-            this.checkBox3.Text = "Jmp3";
+            this.checkBox3.Text = "ICB_UVFlt";
             this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(49, 152);
+            this.checkBox4.Location = new System.Drawing.Point(37, 124);
+            this.checkBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(95, 20);
+            this.checkBox4.Size = new System.Drawing.Size(71, 17);
             this.checkBox4.TabIndex = 5;
-            this.checkBox4.Text = "InvRunning";
+            this.checkBox4.Text = "CapOVFlt";
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(48, 186);
+            this.checkBox5.Location = new System.Drawing.Point(36, 151);
+            this.checkBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(89, 20);
+            this.checkBox5.Size = new System.Drawing.Size(71, 17);
             this.checkBox5.TabIndex = 6;
-            this.checkBox5.Text = "GD_UVFlt";
+            this.checkBox5.Text = "CapUVFlt";
             this.checkBox5.UseVisualStyleBackColor = true;
             // 
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(49, 220);
+            this.checkBox6.Location = new System.Drawing.Point(37, 179);
+            this.checkBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(89, 20);
+            this.checkBox6.Size = new System.Drawing.Size(64, 17);
             this.checkBox6.TabIndex = 7;
-            this.checkBox6.Text = "GD_OCFlt";
+            this.checkBox6.Text = "TempFlt";
             this.checkBox6.UseVisualStyleBackColor = true;
             // 
             // checkBox7
             // 
             this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(48, 257);
+            this.checkBox7.Location = new System.Drawing.Point(36, 209);
+            this.checkBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(87, 20);
+            this.checkBox7.Size = new System.Drawing.Size(65, 17);
             this.checkBox7.TabIndex = 8;
-            this.checkBox7.Text = "CapOVFlt";
+            this.checkBox7.Text = "PhOCFlt";
             this.checkBox7.UseVisualStyleBackColor = true;
             // 
             // checkBox8
             // 
             this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(49, 298);
+            this.checkBox8.Location = new System.Drawing.Point(37, 242);
+            this.checkBox8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(87, 20);
+            this.checkBox8.Size = new System.Drawing.Size(57, 17);
             this.checkBox8.TabIndex = 9;
-            this.checkBox8.Text = "CapUVFlt";
+            this.checkBox8.Text = "GndFlt";
             this.checkBox8.UseVisualStyleBackColor = true;
             // 
             // checkBox9
             // 
             this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(164, 45);
+            this.checkBox9.Location = new System.Drawing.Point(123, 37);
+            this.checkBox9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(79, 20);
+            this.checkBox9.Size = new System.Drawing.Size(62, 17);
             this.checkBox9.TabIndex = 17;
-            this.checkBox9.Text = "TempFlt";
+            this.checkBox9.Text = "WDFlat";
             this.checkBox9.UseVisualStyleBackColor = true;
             // 
             // checkBox10
             // 
             this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(164, 81);
+            this.checkBox10.Location = new System.Drawing.Point(123, 66);
+            this.checkBox10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(78, 20);
+            this.checkBox10.Size = new System.Drawing.Size(44, 17);
             this.checkBox10.TabIndex = 16;
-            this.checkBox10.Text = "PhOCFlt";
+            this.checkBox10.Text = "Bit9";
             this.checkBox10.UseVisualStyleBackColor = true;
             // 
             // checkBox11
             // 
             this.checkBox11.AutoSize = true;
-            this.checkBox11.Location = new System.Drawing.Point(164, 115);
+            this.checkBox11.Location = new System.Drawing.Point(123, 93);
+            this.checkBox11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(92, 20);
+            this.checkBox11.Size = new System.Drawing.Size(50, 17);
             this.checkBox11.TabIndex = 15;
-            this.checkBox11.Text = "CurrLimOp";
+            this.checkBox11.Text = "Bit10";
             this.checkBox11.UseVisualStyleBackColor = true;
             // 
             // checkBox12
             // 
             this.checkBox12.AutoSize = true;
-            this.checkBox12.Location = new System.Drawing.Point(164, 150);
+            this.checkBox12.Location = new System.Drawing.Point(123, 122);
+            this.checkBox12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(68, 20);
+            this.checkBox12.Size = new System.Drawing.Size(50, 17);
             this.checkBox12.TabIndex = 14;
-            this.checkBox12.Text = "GndFlt";
+            this.checkBox12.Text = "Bit11";
             this.checkBox12.UseVisualStyleBackColor = true;
             // 
             // checkBox13
             // 
             this.checkBox13.AutoSize = true;
-            this.checkBox13.Location = new System.Drawing.Point(164, 186);
+            this.checkBox13.Location = new System.Drawing.Point(123, 151);
+            this.checkBox13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox13.Name = "checkBox13";
-            this.checkBox13.Size = new System.Drawing.Size(66, 20);
+            this.checkBox13.Size = new System.Drawing.Size(50, 17);
             this.checkBox13.TabIndex = 13;
-            this.checkBox13.Text = "WDFlt";
+            this.checkBox13.Text = "Bit12";
             this.checkBox13.UseVisualStyleBackColor = true;
             // 
             // checkBox14
             // 
             this.checkBox14.AutoSize = true;
-            this.checkBox14.Location = new System.Drawing.Point(164, 220);
+            this.checkBox14.Location = new System.Drawing.Point(123, 179);
+            this.checkBox14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox14.Name = "checkBox14";
-            this.checkBox14.Size = new System.Drawing.Size(90, 20);
+            this.checkBox14.Size = new System.Drawing.Size(50, 17);
             this.checkBox14.TabIndex = 12;
-            this.checkBox14.Text = "ICB_UVFlt";
+            this.checkBox14.Text = "Bit13";
             this.checkBox14.UseVisualStyleBackColor = true;
             // 
             // checkBox15
             // 
             this.checkBox15.AutoSize = true;
-            this.checkBox15.Location = new System.Drawing.Point(164, 257);
+            this.checkBox15.Location = new System.Drawing.Point(123, 209);
+            this.checkBox15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox15.Name = "checkBox15";
-            this.checkBox15.Size = new System.Drawing.Size(82, 20);
+            this.checkBox15.Size = new System.Drawing.Size(50, 17);
             this.checkBox15.TabIndex = 11;
-            this.checkBox15.Text = "BadCmd";
+            this.checkBox15.Text = "Bit14";
             this.checkBox15.UseVisualStyleBackColor = true;
             // 
             // checkBox16
             // 
             this.checkBox16.AutoSize = true;
-            this.checkBox16.Location = new System.Drawing.Point(164, 298);
+            this.checkBox16.Location = new System.Drawing.Point(123, 242);
+            this.checkBox16.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox16.Name = "checkBox16";
-            this.checkBox16.Size = new System.Drawing.Size(57, 20);
+            this.checkBox16.Size = new System.Drawing.Size(49, 17);
             this.checkBox16.TabIndex = 10;
             this.checkBox16.Text = "bit15";
             this.checkBox16.UseVisualStyleBackColor = true;
@@ -249,171 +267,191 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(308, 43);
+            this.label1.Location = new System.Drawing.Point(231, 35);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 16);
+            this.label1.Size = new System.Drawing.Size(63, 13);
             this.label1.TabIndex = 18;
             this.label1.Text = "Output Freq";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(285, 81);
+            this.label2.Location = new System.Drawing.Point(214, 66);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 16);
+            this.label2.Size = new System.Drawing.Size(81, 13);
             this.label2.TabIndex = 20;
             this.label2.Text = "UPhaseInstCurr";
             // 
             // dataTextBox2
             // 
-            this.dataTextBox2.Location = new System.Drawing.Point(391, 81);
+            this.dataTextBox2.Location = new System.Drawing.Point(293, 66);
+            this.dataTextBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataTextBox2.Name = "dataTextBox2";
-            this.dataTextBox2.Size = new System.Drawing.Size(100, 22);
+            this.dataTextBox2.Size = new System.Drawing.Size(76, 20);
             this.dataTextBox2.TabIndex = 19;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(285, 128);
+            this.label3.Location = new System.Drawing.Point(214, 104);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 16);
+            this.label3.Size = new System.Drawing.Size(80, 13);
             this.label3.TabIndex = 22;
             this.label3.Text = "VPhaseInstCurr";
             // 
             // dataTextBox3
             // 
-            this.dataTextBox3.Location = new System.Drawing.Point(391, 125);
+            this.dataTextBox3.Location = new System.Drawing.Point(293, 102);
+            this.dataTextBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataTextBox3.Name = "dataTextBox3";
-            this.dataTextBox3.Size = new System.Drawing.Size(100, 22);
+            this.dataTextBox3.Size = new System.Drawing.Size(76, 20);
             this.dataTextBox3.TabIndex = 21;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(281, 172);
+            this.label4.Location = new System.Drawing.Point(211, 140);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 16);
+            this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 24;
             this.label4.Text = "WPhaseInstCurr";
             // 
             // dataTextBox4
             // 
-            this.dataTextBox4.Location = new System.Drawing.Point(391, 169);
+            this.dataTextBox4.Location = new System.Drawing.Point(293, 137);
+            this.dataTextBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataTextBox4.Name = "dataTextBox4";
-            this.dataTextBox4.Size = new System.Drawing.Size(100, 22);
+            this.dataTextBox4.Size = new System.Drawing.Size(76, 20);
             this.dataTextBox4.TabIndex = 23;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(285, 211);
+            this.label5.Location = new System.Drawing.Point(214, 171);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 16);
+            this.label5.Size = new System.Drawing.Size(81, 13);
             this.label5.TabIndex = 32;
             this.label5.Text = "AvgRMSPhVolt";
             // 
             // dataTextBox8
             // 
-            this.dataTextBox8.Location = new System.Drawing.Point(582, 122);
+            this.dataTextBox8.Location = new System.Drawing.Point(436, 99);
+            this.dataTextBox8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataTextBox8.Name = "dataTextBox8";
-            this.dataTextBox8.Size = new System.Drawing.Size(100, 22);
+            this.dataTextBox8.Size = new System.Drawing.Size(76, 20);
             this.dataTextBox8.TabIndex = 31;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(539, 43);
+            this.label6.Location = new System.Drawing.Point(404, 35);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(32, 16);
+            this.label6.Size = new System.Drawing.Size(27, 13);
             this.label6.TabIndex = 30;
             this.label6.Text = "VS1";
             // 
             // dataTextBox7
             // 
-            this.dataTextBox7.Location = new System.Drawing.Point(582, 81);
+            this.dataTextBox7.Location = new System.Drawing.Point(436, 66);
+            this.dataTextBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataTextBox7.Name = "dataTextBox7";
-            this.dataTextBox7.Size = new System.Drawing.Size(100, 22);
+            this.dataTextBox7.Size = new System.Drawing.Size(76, 20);
             this.dataTextBox7.TabIndex = 29;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(539, 81);
+            this.label7.Location = new System.Drawing.Point(404, 66);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(32, 16);
+            this.label7.Size = new System.Drawing.Size(27, 13);
             this.label7.TabIndex = 28;
             this.label7.Text = "VS2";
             // 
             // dataTextBox6
             // 
-            this.dataTextBox6.Location = new System.Drawing.Point(582, 40);
+            this.dataTextBox6.Location = new System.Drawing.Point(436, 32);
+            this.dataTextBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataTextBox6.Name = "dataTextBox6";
-            this.dataTextBox6.Size = new System.Drawing.Size(100, 22);
+            this.dataTextBox6.Size = new System.Drawing.Size(76, 20);
             this.dataTextBox6.TabIndex = 27;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(502, 125);
+            this.label8.Location = new System.Drawing.Point(376, 102);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(74, 16);
+            this.label8.Size = new System.Drawing.Size(61, 13);
             this.label8.TabIndex = 26;
             this.label8.Text = "GndCurrent";
             // 
             // dataTextBox5
             // 
-            this.dataTextBox5.Location = new System.Drawing.Point(391, 214);
+            this.dataTextBox5.Location = new System.Drawing.Point(293, 174);
+            this.dataTextBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataTextBox5.Name = "dataTextBox5";
-            this.dataTextBox5.Size = new System.Drawing.Size(100, 22);
+            this.dataTextBox5.Size = new System.Drawing.Size(76, 20);
             this.dataTextBox5.TabIndex = 25;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(522, 169);
+            this.label9.Location = new System.Drawing.Point(392, 137);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(43, 16);
+            this.label9.Size = new System.Drawing.Size(34, 13);
             this.label9.TabIndex = 36;
             this.label9.Text = "Temp";
             // 
             // dataTextBox9
             // 
-            this.dataTextBox9.Location = new System.Drawing.Point(582, 166);
+            this.dataTextBox9.Location = new System.Drawing.Point(436, 135);
+            this.dataTextBox9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataTextBox9.Name = "dataTextBox9";
-            this.dataTextBox9.Size = new System.Drawing.Size(100, 22);
+            this.dataTextBox9.Size = new System.Drawing.Size(76, 20);
             this.dataTextBox9.TabIndex = 35;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(513, 214);
+            this.label10.Location = new System.Drawing.Point(385, 174);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(66, 16);
+            this.label10.Size = new System.Drawing.Size(54, 13);
             this.label10.TabIndex = 34;
             this.label10.Text = "ModIndex";
             // 
             // dataTextBox10
             // 
-            this.dataTextBox10.Location = new System.Drawing.Point(582, 211);
+            this.dataTextBox10.Location = new System.Drawing.Point(436, 171);
+            this.dataTextBox10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataTextBox10.Name = "dataTextBox10";
-            this.dataTextBox10.Size = new System.Drawing.Size(100, 22);
+            this.dataTextBox10.Size = new System.Drawing.Size(76, 20);
             this.dataTextBox10.TabIndex = 33;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(102, 349);
+            this.label11.Location = new System.Drawing.Point(76, 284);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(92, 20);
+            this.label11.Size = new System.Drawing.Size(75, 17);
             this.label11.TabIndex = 37;
             this.label11.Text = "Status Bits";
             // 
             // popupFault1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.dataTextBox9);
@@ -452,6 +490,7 @@
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataTextBox1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "popupFault1";
             this.Text = "Fault Packet";
             this.ResumeLayout(false);
