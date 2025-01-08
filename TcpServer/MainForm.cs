@@ -520,7 +520,7 @@ namespace TcpServer
                 popupFlt.SetCB3(Convert.ToBoolean(pktBuffer[1] & 0x04));
                 popupFlt.SetCB2(Convert.ToBoolean(pktBuffer[1] & 0x02));
                 popupFlt.SetCB1(Convert.ToBoolean(pktBuffer[1] & 0x01));
-                int outFreq = (pktBuffer[2] * 256 + pktBuffer[3]);
+                float outFreq = (pktBuffer[2] * 256 + pktBuffer[3]) / 10.0f;
                 float UphaseCur = (pktBuffer[4] * 256 + pktBuffer[5]) / 10.0f;
                 float VphaseCur = (pktBuffer[6] * 256 + pktBuffer[7]) / 10.0f;
                 float WphaseCur = (pktBuffer[8] * 256 + pktBuffer[9]) / 10.0f;
@@ -529,7 +529,7 @@ namespace TcpServer
                 float VS2 = (pktBuffer[14] * 256 + pktBuffer[15]) / 10.0f;
                 float gndCurr = (pktBuffer[16] * 256 + pktBuffer[17]) / 10.0f;
                 float temperature = (pktBuffer[18] * 256 + pktBuffer[19]) / 10.0f;
-                float modIndex = (pktBuffer[20] * 256 + pktBuffer[21]) / 10.0f;
+                float modIndex = (pktBuffer[20] * 256 + pktBuffer[21]) / 1000.0f;
                 popupFlt.SetDtb1Text(outFreq.ToString());
                 popupFlt.SetDtb2Text(UphaseCur.ToString());
                 popupFlt.SetDtb3Text(VphaseCur.ToString());
