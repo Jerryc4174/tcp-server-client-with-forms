@@ -480,7 +480,8 @@ namespace TcpServer
                 float VS1 = (pktBuffer[8] * 256 + pktBuffer[9]) / 10.0f;
                 float VS2 = (pktBuffer[10] * 256 + pktBuffer[11]) / 10.0f;
                 float gndFltCurr = (pktBuffer[12] * 256 + pktBuffer[13]) / 10.0f;
-                float temperature = (pktBuffer[14] * 256 + pktBuffer[15]) / 10.0f;
+                Int16 rawTemp = (Int16)(pktBuffer[14] * 256 + pktBuffer[15]);
+                float temperature = (float)(rawTemp)/10.0f;
                 int swvMaj = pktBuffer[16];
                 int swvMin = pktBuffer[17];
                 int badCmd = pktBuffer[18];
@@ -528,7 +529,8 @@ namespace TcpServer
                 float VS1 = (pktBuffer[12] * 256 + pktBuffer[13]) / 10.0f;
                 float VS2 = (pktBuffer[14] * 256 + pktBuffer[15]) / 10.0f;
                 float gndCurr = (pktBuffer[16] * 256 + pktBuffer[17]) / 10.0f;
-                float temperature = (pktBuffer[18] * 256 + pktBuffer[19]) / 10.0f;
+                Int16 rawTemp = (Int16)(pktBuffer[18] * 256 + pktBuffer[19]);
+                float temperature = (float)(rawTemp) / 10.0f;
                 float modIndex = (pktBuffer[20] * 256 + pktBuffer[21]) / 1000.0f;
                 popupFlt.SetDtb1Text(outFreq.ToString());
                 popupFlt.SetDtb2Text(UphaseCur.ToString());
