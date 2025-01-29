@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using TcpServer.Properties;
 
@@ -163,7 +165,14 @@ namespace TcpServer
                                     string receivedStr = Encoding.UTF8.GetString(buffer, 0, count);
                                     LogReceived(ep.ToString(), $"{receivedStr.TrimEnd('\r', '\n')}");
 
-                                    UpdatePopUpDialog(pktBuffer, count);
+                                     UpdatePopUpDialog(pktBuffer, count);
+                                    /*
+                                    Task.Delay(100);
+                                    sendButton.Invoke((MethodInvoker)delegate
+                                    {
+                                        sendButton.PerformClick();
+                                    });
+                                    */
 
                                 }
                                 else
